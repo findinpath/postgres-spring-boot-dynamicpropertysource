@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url:
+    username:
+    password:
+
+logging:
+  level:
+    root: INFO
