@@ -1,5 +1,5 @@
-Proof of concept for using the `DynamicPropertySource` spring annotation
-========================================================================
+Proof of concept for using the `DynamicPropertySource` spring annotation in tests requiring PostgreSQL
+======================================================================================================
 
 This simple project shows how to work with the newly introduced
 `org.springframework.test.context.DynamicPropertySource` annotation which
