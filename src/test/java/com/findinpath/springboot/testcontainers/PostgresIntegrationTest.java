@@ -11,12 +11,24 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {Application.class})
+/**
+ * This test shows how to make use of the spring framework's {@link DynamicPropertySource} annotation
+ * in making use of <a href="https://www.testcontainers.org/">testcontainers</a> library.
+ * <p/>
+ * The test class is annotated with {@link SpringJUnitConfig} which points out to JUnit Jupiter
+ * where from to load the spring context in the scope of the unit tests from this class.
+ * <p/>
+ * The annotation {@link Testcontainers} is a JUnit Jupiter annotation which is used along
+ * with the {@link Container} annotation for starting before running all the tests from the class
+ * (and respectively shutting down after running all the tests from the class) the PostgreSQL
+ * database docker throwaway container required for the tests.
+ */
+@SpringJUnitConfig(classes = {Application.class})
 @Testcontainers
 public class PostgresIntegrationTest {
   private static final Logger LOGGER = LoggerFactory.getLogger(PostgresIntegrationTest.class);
@@ -31,6 +43,13 @@ public class PostgresIntegrationTest {
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
+  /**
+   * This static method is used for filling up the spring framework's registry
+   * with properties required for the {@link javax.sql.DataSource} spring bean instantiation
+   * that is required for interacting with the PostgreSQL database.
+   *
+   * @param registry the spring framework's property registry
+   */
   @DynamicPropertySource
   static void postgresProperties(DynamicPropertyRegistry registry) {
     registry.add("spring.datasource.url", postgreSQLContainer::getJdbcUrl);

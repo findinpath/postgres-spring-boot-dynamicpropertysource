@@ -19,8 +19,7 @@ implementation of the `ApplicationContextInitializer` to introduce the required 
 the configurable application context:
 
 ```java
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {Application.class}, initializers = {PostgresIntegrationTest.Initializer.class})
+@SpringJUnitConfig(classes = {Application.class}, initializers = {PostgresIntegrationTest.Initializer.class})
 @Testcontainers
 public class PostgresIntegrationTest {
 
@@ -54,8 +53,7 @@ public class PostgresIntegrationTest {
 With the introduction of the `@DynamicPropertySource` there is no need for an extra `ApplicationContextInitializer`:
 
 ```java
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {Application.class})
+@SpringJUnitConfig(classes = {Application.class})
 @Testcontainers
 public class PostgresIntegrationTest {
 
@@ -86,6 +84,10 @@ public class PostgresIntegrationTest {
 As can be seen from above, the newly introduced `@DynamicPropertySource` is somehow similar to the 
 commonly used `@TestPropertySource` annotation with the mention that it allows the usage of dynamic resources
 such as the IP and port assigned to the container (needed in the `jdbcUrl` in the example above).
+
+Check out the full source code (and corresponding documentation) of 
+the [PostgresIntegrationTest.java](src/test/java/com/findinpath/springboot/testcontainers/PostgresIntegrationTest.java) class. 
+
 
 See details about the usage of the `@DynamicPropertyResource` in the Spring framework 
 [documentation](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/testing.html#testcontext-ctx-management-dynamic-property-sources).
