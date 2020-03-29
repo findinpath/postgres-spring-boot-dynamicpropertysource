@@ -11,8 +11,8 @@ be found in the Github issue:
 
 https://github.com/spring-projects/spring-framework/issues/24540
 
-Before introducing this  annotation, in order to interact via spring boot with a test container
-that was mapped via the `spring.datasource` in the `application.yml` file (for triggering via 
+Before introducing this  annotation, in order to interact via spring boot with a data source 
+(backed by a test container) that was mapped via the `spring.datasource` in the `application.yml` file (for triggering via 
 `org.springframework.boot.autoconfigure.jdbc.DataSourceInitializationConfiguration` the creation of the much needed
 spring bean instance of type `javax.sql.DataSource` for JDBC/JPA tests), there was needed an
 implementation of the `ApplicationContextInitializer` to introduce the required properties in
