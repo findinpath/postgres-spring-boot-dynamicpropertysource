@@ -13,7 +13,7 @@
     <java.version>14</java.version>
     <maven.compiler.release>14</maven.compiler.release>
     <spring.boot.version>2.2.6.RELEASE</spring.boot.version>
-    <postgresql.version>42.2.11</postgresql.version>
+    <postgresql.version>42.2.25</postgresql.version>
     <testcontainers.version>1.13.0</testcontainers.version>
     <junit.version>5.6.1</junit.version>
   </properties>
